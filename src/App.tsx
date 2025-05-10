@@ -8,9 +8,7 @@ import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
-// IMPORTANTE: Sostituisci "/IL-TUO-NOME-REPOSITORY/" con il nome del tuo repository
-// Deve corrispondere a quello che hai messo in vite.config.ts
-const basename = import.meta.env.MODE === 'production' ? "/IL-TUO-NOME-REPOSITORY/" : "/";
+const basename = import.meta.env.MODE === 'production' ? "/dreamy-parrot/" : "/";
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
