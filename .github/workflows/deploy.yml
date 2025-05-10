@@ -20,10 +20,10 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20' # Puoi usare una versione LTS di Node.js
-          cache: 'npm'
+          # cache: 'npm' # Temporaneamente disabilitato per debug
 
       - name: Install dependencies
-        run: npm install # Modificato da 'npm ci' a 'npm install'
+        run: npm install
 
       - name: Build project
         run: npm run build # Questo userà la configurazione 'base' da vite.config.ts
