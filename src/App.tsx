@@ -8,12 +8,16 @@ import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
+// IMPORTANTE: Sostituisci "/IL-TUO-NOME-REPOSITORY/" con il nome del tuo repository
+// Deve corrispondere a quello che hai messo in vite.config.ts
+const basename = import.meta.env.MODE === 'production' ? "/IL-TUO-NOME-REPOSITORY/" : "/";
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <BrowserRouter>
+      <BrowserRouter basename={basename}>
         <Routes>
           <Route path="/" element={<Index />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

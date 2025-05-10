@@ -88,6 +88,10 @@ export function devErrorAndNavigationPlugin(): Plugin {
 }
 
 export default defineConfig(({ mode }) => ({
+  // IMPORTANTE: Sostituisci "/IL-TUO-NOME-REPOSITORY/" con il nome del tuo repository
+  // Ad esempio, se l'URL di GitHub Pages è https://tuonome.github.io/mia-app/,
+  // allora base dovrebbe essere "/mia-app/"
+  base: mode === 'production' ? "/IL-TUO-NOME-REPOSITORY/" : "/", 
   server: {
     host: "::",
     port: 8080,
