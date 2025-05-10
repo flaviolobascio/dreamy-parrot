@@ -23,7 +23,7 @@ jobs:
           cache: 'npm'
 
       - name: Install dependencies
-        run: npm ci # 'ci' è generalmente più veloce e affidabile di 'install' per i CI
+        run: npm install # Modificato da 'npm ci' a 'npm install'
 
       - name: Build project
         run: npm run build # Questo userà la configurazione 'base' da vite.config.ts
