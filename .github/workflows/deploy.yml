@@ -1,0 +1,40 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main # O il nome del tuo branch principale, es. master
+  workflow_dispatch: # Permette l'avvio manuale del workflow
+
+permissions:
+  contents: write # Necessario per pushare sul branch gh-pages
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20' # Puoi usare una versione LTS di Node.js
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci # 'ci' è generalmente più veloce e affidabile di 'install' per i CI
+
+      - name: Build project
+        run: npm run build # Questo userà la configurazione 'base' da vite.config.ts
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist # La cartella che contiene i file di build
+          # publish_branch: gh-pages # Nome del branch di destinazione (default è gh-pages)
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
+          commit_message: 'Deploy to GitHub Pages'
+          # force_orphan: true # Opzionale: crea un branch 'gh-pages' pulito ad ogni deploy, utile per evitare conflitti
